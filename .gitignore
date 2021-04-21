@@ -1,0 +1,9 @@
+.project
+venv
+allure_results
+*.iml
+.idea/
+*.pyc
+.pytest_cache
+*.iml
+*.xml
