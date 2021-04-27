@@ -34,8 +34,16 @@ class DeviceConfig(object):
 
         self.platform_name = self.desired_capabilities["platformName"].lower()
         self.platform_version = self.desired_capabilities["platformVersion"]
-        self.location = "local"
-        self.run_location = "http://0.0.0.0:4723/wd/hub"
+
+        if "deviceGroup" in self.desired_capabilities:
+            self.location = "kobiton"
+        else:
+            self.location = "local"
+
+        self.run_location = {
+            "local": "http://0.0.0.0:4723/wd/hub",
+            "kobiton": "http://AlexKarpinski:b8cc7ed1-eba5-4b60-9ece-5bcd709d6dc2@api.kobiton.com/wd/hub",
+        }[self.location]
 
 
 class EnvConfig(object):
