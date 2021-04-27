@@ -44,3 +44,8 @@ class LoginLocators:
             "android": (By.XPATH, "//android.widget.ImageButton[@content-desc='Navigate up']"),
             "ios": (MobileBy.ACCESSIBILITY_ID, "Back"),
         }[self.config.platform_name]
+
+        self.DENY_BUTTON = {
+            "android": (By.ID, "com.android.packageinstaller:id/permission_deny_button"),
+            "ios": None,
+        }[self.config.platform_name]

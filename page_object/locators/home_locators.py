@@ -11,6 +11,11 @@ class HomeLocators:
             "ios": (MobileBy.ACCESSIBILITY_ID, "For You"),
         }[self.config.platform_name]
 
+        self.HOME_ICON_TAP_BAR = {
+            "android": (By.XPATH, "//android.widget.FrameLayout[@content-desc='Home']"),
+            "ios": (By.XPATH, "//XCUIElementTypeButton[@name='Home']"),
+        }[self.config.platform_name]
+
         self.SEARCH_ICON_TAP_BAR = {
             "android": (By.XPATH, "//android.widget.FrameLayout[@content-desc='Search']"),
             "ios": (By.XPATH, "//XCUIElementTypeButton[@name='Search']"),

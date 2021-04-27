@@ -51,12 +51,7 @@ class SearchClassLocators:
             "ios": (By.XPATH, "//XCUIElementTypeButton[@name='Apply']"),
         }[self.config.platform_name]
 
-        self.KEYWORD_SEARCH = {
-            "android": (By.XPATH, "//android.widget.TextView[@text='Find a venue or activity']"),
-            "ios": (MobileBy.ACCESSIBILITY_ID, "keywordSearchBar"),
-        }[self.config.platform_name]
-
-        self.KEYWORD_SEARCH_FIELD = {
-            "android": (By.XPATH, "//android.widget.EditText[@text='Find an activity or venue']"),
-            "ios": (MobileBy.ACCESSIBILITY_ID, "keywordSearchBar"),
+        self.CANCEL_PERMISSIONS_BUTTON = {
+            "android": (By.ID, "com.classpass.classpass:id/md_buttonDefaultNegative"),
+            "ios": None,
         }[self.config.platform_name]
