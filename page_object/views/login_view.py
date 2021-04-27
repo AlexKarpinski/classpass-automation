@@ -38,6 +38,13 @@ class Login(BaseView):
     def back_button(self):
         return BaseElement(driver=self.driver, locator=self.locators.BACK_BUTTON)
 
+    @property
+    def deny_button(self):
+        return BaseElement(driver=self.driver, locator=self.locators.DENY_BUTTON)
+
+    def deny_permissions(self):
+        self.deny_button.click()
+
     def open_previous_screen(self):
         self.back_button.click()
 

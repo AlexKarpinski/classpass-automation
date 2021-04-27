@@ -24,11 +24,19 @@ class Home(BaseView):
 
     @property
     def close_trial_button(self):
-        self.wait_for(self.locators.CLOSE_TRIAL_BUTTON, 20)
+        self.wait_for(self.locators.CLOSE_TRIAL_BUTTON, 10)
         return BaseElement(driver=self.driver, locator=self.locators.CLOSE_TRIAL_BUTTON)
+
+    @property
+    def home_icon_tap_bar(self):
+        self.wait_for(self.locators.HOME_ICON_TAP_BAR, 20)
+        return BaseElement(driver=self.driver, locator=self.locators.HOME_ICON_TAP_BAR)
 
     def open_search_screen(self):
         self.search_icon_tap_bar.click()
+
+    def open_home_screen(self):
+        self.home_icon_tap_bar.click()
 
     def close_trial_button_click(self):
         try:

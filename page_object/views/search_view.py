@@ -1,4 +1,5 @@
 from appium.webdriver.common.touch_action import TouchAction
+from selenium.webdriver.common.by import By
 
 from page_object.locators.search_locators import SearchLocators
 from page_object.views.base_view import BaseView
@@ -32,6 +33,25 @@ class Search(BaseView):
     def sports_and_recreation_image(self):
         return BaseElement(driver=self.driver, locator=self.locators.SPORTS_AND_RECREATION_IMAGE)
 
+    @property
+    def keyword_search(self):
+        return BaseElement(driver=self.driver, locator=self.locators.KEYWORD_SEARCH)
+
+    @property
+    def back_button(self):
+        return BaseElement(driver=self.driver, locator=self.locators.BACK_BUTTON)
+
+    @property
+    def keyword_search_field(self):
+        return BaseElement(driver=self.driver, locator=self.locators.KEYWORD_SEARCH_FIELD)
+
+    @property
+    def cancel_permissions_button(self):
+        return BaseElement(driver=self.driver, locator=self.locators.CANCEL_PERMISSIONS_BUTTON)
+
+    def cancel_permissions(self):
+        self.cancel_permissions_button.click()
+
     def scroll_to_bottom(self, config):
         if config.platform_name == "android":
             actions = TouchAction(self.driver)
@@ -62,6 +82,15 @@ class Search(BaseView):
         locators = SearchLocators(config=self.config)
         return self.wait_for(locators.SPORTS_AND_RECREATION_IMAGE)
 
+    def image_visibility_by_name(self, name, config):
+        if name == 'Wellness' or name == 'Beauty' or name == 'Sports and Recreation':
+            self.scroll_to_bottom(config)
+        IMAGE = {
+            "android": (By.XPATH, "//android.widget.TextView[contains(@text,'" + name + "')]/.."),
+            "ios": (By.XPATH, "//XCUIElementTypeStaticText[@name='" + name + "']"),
+        }[self.config.platform_name]
+        return self.wait_for(IMAGE)
+
     def fitness_image_invisibility(self):
         locators = SearchLocators(config=self.config)
         return self.wait_for_invisibility(locators.FITNESS_IMAGE)
@@ -80,5 +109,33 @@ class Search(BaseView):
     def open_online(self):
         self.online_image.click()
 
-    def open_sports_and_recreation(self):
+    def open_class_by_name(self, name, config):
+        if name == 'Wellness' or name == 'Beauty' or name == 'Sports and Recreation':
+            self.scroll_to_bottom(config)
+        IMAGE = {
+            "android": (By.XPATH, "//android.widget.TextView[contains(@text,'" + name + "')]/.."),
+            "ios": (By.XPATH, "//XCUIElementTypeStaticText[@name='" + name + "']"),
+        }[self.config.platform_name]
+        self.try_click(IMAGE)
+        if config.platform_name == 'android':
+            self.cancel_permissions()
+
+    def open_sports_and_recreation(self, config):
         self.sports_and_recreation_image.click()
+        if config.platform_name == 'android':
+            self.cancel_permissions()
+
+    def select_activity_from_results(self, activity, config):
+        ACTIVITY_LOCATOR = {
+            "android": (By.XPATH, "//android.widget.TextView[@text='" + activity + "']"),
+            "ios": (By.XPATH, "(//XCUIElementTypeOther[@name='" + activity + "'])[4]"),
+        }[self.config.platform_name]
+        self.try_click(ACTIVITY_LOCATOR)
+        if config.platform_name == 'android':
+            self.cancel_permissions()
+
+    def keyword_search_click(self):
+        self.try_click(self.locators.KEYWORD_SEARCH)
+
+    def open_previous_screen(self):
+        self.back_button.click()

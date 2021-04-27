@@ -1,3 +1,4 @@
+from appium.webdriver.common.mobileby import MobileBy
 from selenium.webdriver.common.by import By
 
 from page_object.locators.searchClass.search_class_locators import SearchClassLocators
@@ -49,12 +50,11 @@ class SearchClass(BaseView):
         return BaseElement(driver=self.driver, locator=self.locators.APPLY_BUTTON)
 
     @property
-    def keyword_search(self):
-        return BaseElement(driver=self.driver, locator=self.locators.KEYWORD_SEARCH)
+    def cancel_permissions_button(self):
+        return BaseElement(driver=self.driver, locator=self.locators.CANCEL_PERMISSIONS_BUTTON)
 
-    @property
-    def keyword_search_field(self):
-        return BaseElement(driver=self.driver, locator=self.locators.KEYWORD_SEARCH_FIELD)
+    def cancel_permissions(self):
+        self.cancel_permissions_button.click()
 
     def open_previous_screen(self):
         self.back_button.click()
@@ -86,12 +86,21 @@ class SearchClass(BaseView):
     def swipe_left_from_time_button(self):
         self.swipe_left_from(self.time_button)
 
-    def select_activity_from_results(self, activity):
+    def select_activity_from_results(self, activity, config):
         ACTIVITY_LOCATOR = {
             "android": (By.XPATH, "//android.widget.TextView[@text='" + activity + "']"),
             "ios": (By.XPATH, "(//XCUIElementTypeOther[@name='" + activity + "'])[4]"),
         }[self.config.platform_name]
         self.try_click(ACTIVITY_LOCATOR)
+        if config.platform_name == 'android':
+            self.cancel_permissions()
 
     def keyword_search_click(self):
-        self.keyword_search.click()
+        self.search_bar.click()
+
+    def source_by_name_visibility(self, name):
+        SOURCE = {
+            "android": (By.XPATH, '//*[@text="' + name + '"]'),
+            "ios": (By.XPATH, "//XCUIElementTypeStaticText[@name='" + name + "']"),
+        }[self.config.platform_name]
+        return self.wait_for(SOURCE)
