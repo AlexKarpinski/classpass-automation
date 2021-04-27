@@ -30,6 +30,8 @@ class TestLoginView:
     @allure.title("Verify that user can log in to the app with valid email and password, TC_LOGIN_001")
     def test_login_positive(self, driver, config, login_view):
         login_view.login_into_app(Constants.USER_NAME, Constants.USER_PASSWORD)
+        if config.platform_name == 'android':
+            login_view.deny_permissions()
         assert login_view.login_label_invisibility()
         home = Home(driver=driver, config=config)
         home.close_trial_button_click()
