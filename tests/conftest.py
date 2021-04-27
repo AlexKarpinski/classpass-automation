@@ -1,6 +1,7 @@
 import pytest
 import time
 from appium import webdriver
+import allure
 
 from page_object.config import EnvConfig, DeviceConfig, TestConfig, Config
 
@@ -73,7 +74,7 @@ def platform(config):
 def skip_by_platform(request, platform):
     if request.node.get_closest_marker('skip_platform'):
         if request.node.get_closest_marker('skip_platform').args[0] == platform:
-            pytest.skip('skipped on: {}'.format(platform)+" - " +
+            pytest.skip('skipped on: {}'.format(platform) + " - " +
                         request.node.get_closest_marker('skip_platform').args[1])
 
 
@@ -117,3 +118,19 @@ def driver(device_config):
     except Exception as e:
         pytest.skip(f"Driver not able to be started. {e}", allow_module_level=True)
 
+
+@pytest.fixture(autouse=True)
+def allure_params():
+    return
+
+
+@pytest.fixture(autouse=True)
+def allure_setup(driver, env_config, device_config):
+    if device_config.platform_name == 'android':
+        allure.dynamic.parent_suite(
+            f"{env_config.env} | {device_config.device_name} | Build: {str(device_config.build)}"
+        )
+        kobiton_session_id = driver.desired_capabilities.get("kobitonSessionId")
+        kobiton_url = "https://portal.kobiton.com/sessions/" + str(kobiton_session_id)
+        allure.dynamic.link(kobiton_url, name="Kobiton Link - " + str(device_config.build))
+    return
