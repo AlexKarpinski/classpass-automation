@@ -1,0 +1,34 @@
+{
+  "classes": {
+    "online": "Online",
+    "beauty": "Beauty"
+  },
+  "activities": {
+    "boxing": "Boxing",
+    "massage": "Massage"
+  },
+  "Online": {
+    "nameios": "BLOK",
+    "nameandroid": "Barry's"
+  },
+  "Beauty": {
+    "nameios": "Young LDN",
+    "nameandroid": "Young LDN"
+  },
+  "Fitness": {
+    "nameios": "1Rebel",
+    "nameandroid": "1Rebel"
+  },
+  "Boxing": {
+    "nameios": "BLOK",
+    "nameandroid": "BLOK"
+  },
+  "Football": {
+    "nameios": "FC URBAN",
+    "nameandroid": "FC URBAN"
+  },
+  "Massage": {
+    "nameios": "Hands Of Nikki",
+    "nameandroid": "Hands Of Nikki"
+  }
+}
