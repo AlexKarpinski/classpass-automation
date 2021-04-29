@@ -32,8 +32,6 @@ class DesiredCapabilities(object):
         "deviceName": "samsung SM-G920F",
         "appPackage": "com.classpass.classpass",
         "appActivity": "com.classpass.classpass.appstart.viewcontrollers.activities.SplashScreenActivity",
-        "autoGrantPermissions": True,
-        "locationServicesAuthorized": False,
         "newCommandTimeout": 60,
         "systemPort": 8201
     }
