@@ -11,7 +11,7 @@ from page_object.views.search_view import Search
 
 f = open('page_object/data/sourcesDataLondon.json', )
 data = json.load(f)
-classes = data['classes']
+sources = data['classes']
 activities = data['activities']
 
 
@@ -65,19 +65,22 @@ class TestSearchClassView:
     @allure.title("Keyword Search - Verify that user is able to apply new activity on result screen, TC_SEARCH_004")
     def test_search_activity(self, search_view, driver, config, activity):
         search_view.keyword_search_click()
-        search_view.keyword_search_field.type(activity)
         search_view.select_activity_from_results(activity, config)
         search_class_view = SearchClass(driver=driver, config=config)
-        assert search_class_view.search_bar.has_text(activity)
-        assert search_class_view.source_by_name_visibility(data[activity]['name' + config.platform_name])
+        with allure.step(f"THEN Search bar should have text {activity}"):
+            assert search_class_view.search_bar.has_text(activity)
+        with allure.step(f"AND Source {data[activity]['name' + config.platform_name]} should be visible"):
+            assert search_class_view.source_by_name_visibility(data[activity]['name' + config.platform_name])
 
-    @pytest.mark.parametrize("classes_type", classes.values())
+    @pytest.mark.parametrize("sources_type", sources.values())
     @allure.title("Verify that user is able to open category from search screen, TC_SEARCH_002")
-    def test_open_categories(self, search_view, config, driver, classes_type):
-        search_view.open_class_by_name(classes_type, config)
+    def test_open_categories(self, search_view, config, driver, sources_type):
+        search_view.open_category_by_name(sources_type, config)
         search_class_view = SearchClass(driver=driver, config=config)
-        assert search_class_view.search_bar.has_text(classes_type)
-        assert search_class_view.source_by_name_visibility(data[classes_type]['name' + config.platform_name])
+        with allure.step(f"THEN Search bar should have text {sources_type}"):
+            assert search_class_view.search_bar.has_text(sources_type)
+        with allure.step(f"AND Source {data[sources_type]['name' + config.platform_name]} should be visible"):
+            assert search_class_view.source_by_name_visibility(data[sources_type]['name' + config.platform_name])
 
 
 class TestSearchClassesFilters:
@@ -103,10 +106,9 @@ class TestSearchClassesFilters:
     @allure.title("Filters bar: Verify that 'View by time', 'Time', 'Credits', 'Favorited', 'Amenities' pills are "
                   "available on filters bar, TC_SEARCH_003")
     def test_filter_pills(self, search_class_view, config):
-        assert search_class_view.filters_button_visibility()
-        assert search_class_view.view_by_the_time_button_visibility()
-        assert search_class_view.time_button_visibility()
-        if config.platform_name == "android":
-            search_class_view.swipe_left_from_time_button()
-            assert search_class_view.credits_button_visibility()
-            assert search_class_view.amenities_button_visibility()
+        with allure.step("THEN filters should be visible"):
+            assert search_class_view.filters_button_visibility()
+        with allure.step("AND view by the time button should be visible"):
+            assert search_class_view.view_by_the_time_button_visibility()
+        with allure.step("AND time button should be visible"):
+            assert search_class_view.time_button_visibility()
