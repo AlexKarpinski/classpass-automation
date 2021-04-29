@@ -7,7 +7,7 @@ class SearchClassLocators:
         self.config = config
 
         self.FILTERS_BUTTON = {
-            "android": (By.XPATH, "//android.widget.TextView[@text='Filters']/.."),
+            "android": (By.ID, "com.classpass.classpass:id/pillLeftIcon"),
             "ios": (By.XPATH, "//XCUIElementTypeButton[@name='Filters']"),
         }[self.config.platform_name]
 
