@@ -1,3 +1,5 @@
+import allure
+
 from page_object.locators.profile_locators import ProfileLocators
 from page_object.views.base_view import BaseView
 from page_object.base_element import BaseElement
@@ -27,7 +29,10 @@ class Profile(BaseView):
         return BaseElement(driver=self.driver, locator=self.locators.SUPPORT_LABEL)
 
     def log_out(self):
-        self.profile_icon.click()
-        self.settings_button.click()
+        with allure.step('WHEN User clicks on the profile button'):
+            self.profile_icon.click()
+        with allure.step('AND User clicks on the settings button'):
+            self.settings_button.click()
         # self.scroll_up_from(self.support_label)
-        self.log_out_button.click()
+        with allure.step('AND User clicks on the logout button'):
+            self.log_out_button.click()

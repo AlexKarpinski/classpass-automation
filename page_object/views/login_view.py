@@ -1,3 +1,5 @@
+import allure
+
 from page_object.locators.login_locators import LoginLocators
 from page_object.views.base_view import BaseView
 from page_object.base_element import BaseElement
@@ -12,7 +14,8 @@ class Login(BaseView):
 
     def login_label_invisibility(self):
         locators = LoginLocators(config=self.config)
-        return self.wait_for_invisibility(locators.LOGIN_LABEL)
+        with allure.step("THEN Login label should be invisible"):
+            return self.wait_for_invisibility(locators.LOGIN_LABEL)
 
     @property
     def login_button(self):
@@ -43,13 +46,18 @@ class Login(BaseView):
         return BaseElement(driver=self.driver, locator=self.locators.DENY_BUTTON)
 
     def deny_permissions(self):
-        self.deny_button.click()
+        with allure.step("AND User clicks on deny button"):
+            self.deny_button.click()
 
     def open_previous_screen(self):
         self.back_button.click()
 
     def login_into_app(self, email, password):
-        self.login_button.click()
-        self.email_field.input_without_hide_keyboard(email)
-        self.password_field.type(password)
-        self.log_in_button.click()
+        with allure.step("WHEN User clicks on the login button"):
+            self.login_button.click()
+        with allure.step(f"AND User inputs {email} as email"):
+            self.email_field.input_without_hide_keyboard(email)
+        with allure.step(f"AND User inputs {password} as password"):
+            self.password_field.type(password)
+        with allure.step('AND User clicks on the login button'):
+            self.log_in_button.click()

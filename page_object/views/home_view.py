@@ -1,5 +1,6 @@
-from selenium.common.exceptions import TimeoutException
+import allure
 
+from selenium.common.exceptions import TimeoutException
 from page_object.locators.home_locators import HomeLocators
 from page_object.views.base_view import BaseView
 from page_object.base_element import BaseElement
@@ -33,15 +34,18 @@ class Home(BaseView):
         return BaseElement(driver=self.driver, locator=self.locators.HOME_ICON_TAP_BAR)
 
     def open_search_screen(self):
-        self.search_icon_tap_bar.click()
+        with allure.step("WHEN User opens search screen"):
+            self.search_icon_tap_bar.click()
 
     def open_home_screen(self):
-        self.home_icon_tap_bar.click()
+        with allure.step("WHEN User opens home screen"):
+            self.home_icon_tap_bar.click()
 
     def close_trial_button_click(self):
-        try:
-            self.close_trial_button.click()
-            return None
-        except TimeoutException:
-            print(f"\nERROR: cannot find the element using a locator {self.locator}. ")
-            return None
+        with allure.step("WHEN User closes trial view"):
+            try:
+                self.close_trial_button.click()
+                return None
+            except TimeoutException:
+                print(f"\nERROR: cannot find the element using a locator {self.locator}. ")
+                return None
