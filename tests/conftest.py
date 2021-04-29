@@ -1,7 +1,10 @@
+import os
+
 import pytest
 import time
 from appium import webdriver
 import allure
+import logging
 
 from page_object.config import EnvConfig, DeviceConfig, TestConfig, Config
 
@@ -126,11 +129,33 @@ def allure_params():
 
 @pytest.fixture(autouse=True)
 def allure_setup(driver, env_config, device_config):
-    if device_config.platform_name == 'android':
+    if "deviceGroup" in device_config.desired_capabilities:
         allure.dynamic.parent_suite(
-            f"{env_config.env} | {device_config.device_name} | Build: {str(device_config.build)}"
+            f"{device_config.device_name}"
         )
         kobiton_session_id = driver.desired_capabilities.get("kobitonSessionId")
         kobiton_url = "https://portal.kobiton.com/sessions/" + str(kobiton_session_id)
         allure.dynamic.link(kobiton_url, name="Kobiton Link - " + str(device_config.build))
     return
+
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    if rep.when == 'call' and rep.failed:
+        mode = 'a' if os.path.exists('failures') else 'w'
+        try:
+            with open('failures', mode) as f:
+                if 'driver' in item.fixturenames:
+                    web_driver = item.funcargs['driver']
+                else:
+                    print('Fail to take screen-shot')
+                    return
+            allure.attach(
+                web_driver.get_screenshot_as_png(),
+                name='screenshot',
+                attachment_type=allure.attachment_type.PNG
+            )
+        except Exception as e:
+            print('Fail to take screen-shot: {}'.format(e))
