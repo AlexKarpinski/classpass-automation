@@ -95,7 +95,6 @@ class BaseElement(object):
             element = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable(locator=self.locator)
             )
-            element.clear()
             element.set_value(text)
             self.driver.hide_keyboard()
         except TimeoutException:
