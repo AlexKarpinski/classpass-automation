@@ -48,7 +48,7 @@ class DeviceConfig(object):
 
 class EnvConfig(object):
     def __init__(self, env, build):
-        SUPPORTED_ENVS = ["qa", "stg"]
+        SUPPORTED_ENVS = ["dev", "prod", "staging"]
 
         self.env = env.lower()
 

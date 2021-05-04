@@ -5,9 +5,9 @@ class DesiredCapabilities(object):
         "platformVersion": "10",
         "udid": "emulator-5554",
         "deviceName": "Pixel 3A",
-        "appPackage": "com.classpass.classpass.dev",
+        "appPackage": "com.classpass.classpass",
         "appActivity": "com.classpass.classpass.appstart.viewcontrollers.activities.SplashScreenActivity",
-        "autoGrantPermissions": True,
+        "autoGrantPermissions": False,
         "newCommandTimeout": 60,
         "systemPort": 8201
     }
@@ -21,13 +21,13 @@ class DesiredCapabilities(object):
         "bundleId": "com.classpass.classpass",
         "platformVersion": "14.4",
         "agentPath": "/usr/local/lib/node_modules/appium/node_modules/appium-webdriveragent/WebDriverAgent.xcodeproj",
-        "newCommandTimeout": 360,
+        "newCommandTimeout": 360
     }
 
     MAC_MINI_LOCAL_SAMSUNG_S6 = {
         "platformName": "Android",
         "automationName": "UIAutomator2",
-        "platformVersion": "7",
+        "platformVersion": "7.0",
         "udid": "0815f83444d83304",
         "deviceName": "samsung SM-G920F",
         "appPackage": "com.classpass.classpass",

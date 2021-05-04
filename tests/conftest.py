@@ -4,14 +4,13 @@ import pytest
 import time
 from appium import webdriver
 import allure
-import logging
 
 from page_object.config import EnvConfig, DeviceConfig, TestConfig, Config
 
 
 def pytest_addoption(parser):
     parser.addoption(
-        "--env", action="store", default="qa", help="Environment to run tests against"
+        "--env", action="store", default="prod", help="Environment to run tests against"
     )
     parser.addoption(
         "--device-name",

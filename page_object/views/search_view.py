@@ -57,7 +57,7 @@ class Search(BaseView):
         with allure.step("WHEN User scrolls to bottom"):
             if config.platform_name == "android":
                 actions = TouchAction(self.driver)
-                actions.press(x=500, y=2000).wait(1000).move_to(x=10, y=0).release().perform()
+                actions.press(x=500, y=1850).wait(1000).move_to(x=500, y=0).release().perform()
             elif config.platform_name == "ios":
                 self.scroll_up_from(self.online_image)
 
@@ -148,10 +148,10 @@ class Search(BaseView):
 
     def keyword_search_click(self):
         with allure.step("WHEN User clicks on the keyword search"):
-            self.try_click(self.locators.KEYWORD_SEARCH)
+            self.keyword_search.click()
 
     def keyword_search_field_type(self, activity):
-        with allure.step(f"WHEN User types {activity} on the keyword search"):
+        with allure.step(f"AND User types {activity} on the keyword search"):
             self.keyword_search_field.type(activity)
 
     def open_previous_screen(self):

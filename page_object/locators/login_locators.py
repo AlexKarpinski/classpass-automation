@@ -49,3 +49,8 @@ class LoginLocators:
             "android": (By.ID, "com.android.packageinstaller:id/permission_deny_button"),
             "ios": None,
         }[self.config.platform_name]
+
+        self.DENY_BUTTON_ANDROID_10 = {
+            "android": (By.ID, "com.android.permissioncontroller:id/permission_deny_button"),
+            "ios": None,
+        }[self.config.platform_name]

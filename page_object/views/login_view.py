@@ -49,6 +49,14 @@ class Login(BaseView):
         with allure.step("AND User clicks on deny button"):
             self.deny_button.click()
 
+    @property
+    def deny_button_android_10(self):
+        return BaseElement(driver=self.driver, locator=self.locators.DENY_BUTTON_ANDROID_10)
+
+    def deny_permissions_android_10(self):
+        with allure.step("AND User clicks on deny button"):
+            self.deny_button_android_10.click()
+
     def open_previous_screen(self):
         self.back_button.click()
 
@@ -56,8 +64,8 @@ class Login(BaseView):
         with allure.step("WHEN User clicks on the login button"):
             self.login_button.click()
         with allure.step(f"AND User inputs {email} as email"):
-            self.email_field.input_without_hide_keyboard(email)
+            self.email_field.input(email)
         with allure.step(f"AND User inputs {password} as password"):
-            self.password_field.type(password)
+            self.password_field.input(password)
         with allure.step('AND User clicks on the login button'):
             self.log_in_button.click()

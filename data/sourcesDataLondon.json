@@ -1,26 +1,29 @@
 {
   "classes": {
-    "online": "Online",
-    "beauty": "Beauty"
+    "online": "Online"
   },
   "activities": {
     "boxing": "Boxing",
     "massage": "Massage"
   },
   "Online": {
-    "nameios": "Fail",
-    "nameandroid": "Fail"
+    "nameios": "BLOK",
+    "nameandroid": "Digme Fitness"
   },
   "Beauty": {
     "nameios": "Young LDN",
-    "nameandroid": "Serenity Nails and Beauty"
+    "nameandroid": "Young LDN"
   },
   "Fitness": {
     "nameios": "1Rebel",
     "nameandroid": "1Rebel"
   },
+  "Sports And Recreation": {
+    "nameios": "Fitness First",
+    "nameandroid": "Fitness First"
+  },
   "Boxing": {
-    "nameios": "BLOK",
+    "nameios": "1Rebel",
     "nameandroid": "BLOK"
   },
   "Football": {
@@ -28,7 +31,7 @@
     "nameandroid": "FC URBAN"
   },
   "Massage": {
-    "nameios": "Hands Of Nikki",
-    "nameandroid": "Hands Of Nikki"
+    "nameios": "FAIL",
+    "nameandroid": "FAIL"
   }
 }

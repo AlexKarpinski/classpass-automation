@@ -104,6 +104,6 @@ class SearchClass(BaseView):
     def source_by_name_visibility(self, name):
         SOURCE = {
             "android": (By.XPATH, '//*[@text="' + name + '"]'),
-            "ios": (By.XPATH, "//XCUIElementTypeStaticText[@name='" + name + "']"),
+            "ios": (By.XPATH, '//XCUIElementTypeStaticText[@name="' + name + '"]'),
         }[self.config.platform_name]
         return self.wait_for(SOURCE)

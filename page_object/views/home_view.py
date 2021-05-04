@@ -15,23 +15,23 @@ class Home(BaseView):
 
     @property
     def welcome_label(self):
-        self.wait_for(self.locators.WELCOME_LABEL, 10)
         return BaseElement(driver=self.driver, locator=self.locators.WELCOME_LABEL)
 
     @property
     def search_icon_tap_bar(self):
-        self.wait_for(self.locators.WELCOME_LABEL, 10)
         return BaseElement(driver=self.driver, locator=self.locators.SEARCH_ICON_TAP_BAR)
 
     @property
     def close_trial_button(self):
-        self.wait_for(self.locators.CLOSE_TRIAL_BUTTON, 10)
         return BaseElement(driver=self.driver, locator=self.locators.CLOSE_TRIAL_BUTTON)
 
     @property
     def home_icon_tap_bar(self):
-        self.wait_for(self.locators.HOME_ICON_TAP_BAR, 20)
         return BaseElement(driver=self.driver, locator=self.locators.HOME_ICON_TAP_BAR)
+
+    def welcome_label_image_visibility(self):
+        locators = HomeLocators(config=self.config)
+        return self.wait_for(locators.WELCOME_LABEL)
 
     def open_search_screen(self):
         with allure.step("WHEN User opens search screen"):
