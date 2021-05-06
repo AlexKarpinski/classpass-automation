@@ -7,6 +7,9 @@ class NavigationLocators:
         self.config = config
 
         self.EXPLORE_BUTTON = {
-            "android": (By.ID, "//android.widget.CheckedTextView[@content-desc='Explore']"),
+            "android": (
+                By.ID,
+                "//android.widget.CheckedTextView[@content-desc='Explore']",
+            ),
             "ios": (By.XPATH, ""),
         }[self.config.platform_name]

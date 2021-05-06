@@ -3,9 +3,7 @@ import sys
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import (
-    TimeoutException
-)
+from selenium.common.exceptions import TimeoutException
 
 
 class BaseView(object):
@@ -63,9 +61,7 @@ class BaseView(object):
         except AttributeError:
             origin_el = origin_element
         actions = TouchAction(self.driver)
-        actions.press(origin_el).wait(1000).move_to(
-            x=10, y=0
-        ).release().perform()
+        actions.press(origin_el).wait(1000).move_to(x=10, y=0).release().perform()
 
     # Swipe down from any element
     def scroll_down_from(self, origin_element):

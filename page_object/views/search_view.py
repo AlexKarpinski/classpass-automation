@@ -32,7 +32,9 @@ class Search(BaseView):
 
     @property
     def sports_and_recreation_image(self):
-        return BaseElement(driver=self.driver, locator=self.locators.SPORTS_AND_RECREATION_IMAGE)
+        return BaseElement(
+            driver=self.driver, locator=self.locators.SPORTS_AND_RECREATION_IMAGE
+        )
 
     @property
     def keyword_search(self):
@@ -44,11 +46,15 @@ class Search(BaseView):
 
     @property
     def keyword_search_field(self):
-        return BaseElement(driver=self.driver, locator=self.locators.KEYWORD_SEARCH_FIELD)
+        return BaseElement(
+            driver=self.driver, locator=self.locators.KEYWORD_SEARCH_FIELD
+        )
 
     @property
     def cancel_permissions_button(self):
-        return BaseElement(driver=self.driver, locator=self.locators.CANCEL_PERMISSIONS_BUTTON)
+        return BaseElement(
+            driver=self.driver, locator=self.locators.CANCEL_PERMISSIONS_BUTTON
+        )
 
     def cancel_permissions(self):
         self.cancel_permissions_button.click()
@@ -57,7 +63,9 @@ class Search(BaseView):
         with allure.step("WHEN User scrolls to bottom"):
             if config.platform_name == "android":
                 actions = TouchAction(self.driver)
-                actions.press(x=500, y=1850).wait(1000).move_to(x=500, y=0).release().perform()
+                actions.press(x=500, y=1850).wait(1000).move_to(
+                    x=500, y=0
+                ).release().perform()
             elif config.platform_name == "ios":
                 self.scroll_up_from(self.online_image)
 
@@ -91,10 +99,13 @@ class Search(BaseView):
             return self.wait_for(locators.SPORTS_AND_RECREATION_IMAGE)
 
     def image_visibility_by_name(self, name, config):
-        if name == 'Wellness' or name == 'Beauty' or name == 'Sports and Recreation':
+        if name == "Wellness" or name == "Beauty" or name == "Sports and Recreation":
             self.scroll_to_bottom(config)
         IMAGE = {
-            "android": (By.XPATH, "//android.widget.TextView[contains(@text,'" + name + "')]/.."),
+            "android": (
+                By.XPATH,
+                "//android.widget.TextView[contains(@text,'" + name + "')]/..",
+            ),
             "ios": (By.XPATH, "//XCUIElementTypeStaticText[@name='" + name + "']"),
         }[self.config.platform_name]
         return self.wait_for(IMAGE)
@@ -118,32 +129,38 @@ class Search(BaseView):
         self.online_image.click()
 
     def open_category_by_name(self, name, config):
-        if name == 'Wellness' or name == 'Beauty' or name == 'Sports and Recreation':
+        if name == "Wellness" or name == "Beauty" or name == "Sports and Recreation":
             self.scroll_to_bottom(config)
         IMAGE = {
-            "android": (By.XPATH, "//android.widget.TextView[contains(@text,'" + name + "')]/.."),
+            "android": (
+                By.XPATH,
+                "//android.widget.TextView[contains(@text,'" + name + "')]/..",
+            ),
             "ios": (By.XPATH, "//XCUIElementTypeStaticText[@name='" + name + "']"),
         }[self.config.platform_name]
         with allure.step(f"WHEN User clicks on the {name} image"):
             self.try_click(IMAGE)
-        if config.platform_name == 'android':
+        if config.platform_name == "android":
             with allure.step("AND User clicks on the cancel button"):
                 self.cancel_permissions()
 
     def open_sports_and_recreation(self, config):
         with allure.step("WHEN User opens sports and recreation category"):
             self.sports_and_recreation_image.click()
-        if config.platform_name == 'android':
+        if config.platform_name == "android":
             with allure.step("AND User clicks in the cancel button"):
                 self.cancel_permissions()
 
     def select_activity_from_results(self, activity, config):
         ACTIVITY_LOCATOR = {
-            "android": (By.XPATH, "//android.widget.TextView[@text='" + activity + "']"),
+            "android": (
+                By.XPATH,
+                "//android.widget.TextView[@text='" + activity + "']",
+            ),
             "ios": (By.XPATH, "(//XCUIElementTypeOther[@name='" + activity + "'])[4]"),
         }[self.config.platform_name]
         self.try_click(ACTIVITY_LOCATOR)
-        if config.platform_name == 'android':
+        if config.platform_name == "android":
             self.cancel_permissions()
 
     def keyword_search_click(self):

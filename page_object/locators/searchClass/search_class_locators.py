@@ -13,27 +13,42 @@ class SearchClassLocators:
 
         self.VIEW_BY_THE_TIME_BUTTON = {
             "android": (By.XPATH, "//*[contains(@text, 'View by time')]/.."),
-            "ios": (MobileBy.IOS_CLASS_CHAIN, "**/XCUIElementTypeButton[`label == 'View by time'`]"),
+            "ios": (
+                MobileBy.IOS_CLASS_CHAIN,
+                "**/XCUIElementTypeButton[`label == 'View by time'`]",
+            ),
         }[self.config.platform_name]
 
         self.TIME_BUTTON = {
             "android": (By.XPATH, "//*[contains(@text, 'Time')]/.."),
-            "ios": (MobileBy.IOS_CLASS_CHAIN, "**/XCUIElementTypeButton[`label == 'Time'`]"),
+            "ios": (
+                MobileBy.IOS_CLASS_CHAIN,
+                "**/XCUIElementTypeButton[`label == 'Time'`]",
+            ),
         }[self.config.platform_name]
 
         self.CREDITS_BUTTON = {
             "android": (By.XPATH, "//*[contains(@text, 'Credits')]/.."),
-            "ios": (MobileBy.IOS_CLASS_CHAIN, "**/XCUIElementTypeButton[`label == 'Credits'`]"),
+            "ios": (
+                MobileBy.IOS_CLASS_CHAIN,
+                "**/XCUIElementTypeButton[`label == 'Credits'`]",
+            ),
         }[self.config.platform_name]
 
         self.FAVORITES_BUTTON = {
             "android": (By.XPATH, "//*[contains(@text, 'Favorites')]/.."),
-            "ios": (MobileBy.IOS_CLASS_CHAIN, "**/XCUIElementTypeButton[`label == 'Favorited'`]"),
+            "ios": (
+                MobileBy.IOS_CLASS_CHAIN,
+                "**/XCUIElementTypeButton[`label == 'Favorited'`]",
+            ),
         }[self.config.platform_name]
 
         self.AMENITIES_BUTTON = {
             "android": (By.XPATH, "//*[contains(@text, 'Amenities')]/.."),
-            "ios": (MobileBy.IOS_CLASS_CHAIN, "**/XCUIElementTypeButton[`label == 'Amenities'`]"),
+            "ios": (
+                MobileBy.IOS_CLASS_CHAIN,
+                "**/XCUIElementTypeButton[`label == 'Amenities'`]",
+            ),
         }[self.config.platform_name]
 
         self.SEARCH_BAR = {

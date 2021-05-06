@@ -19,7 +19,9 @@ class Home(BaseView):
 
     @property
     def search_icon_tap_bar(self):
-        return BaseElement(driver=self.driver, locator=self.locators.SEARCH_ICON_TAP_BAR)
+        return BaseElement(
+            driver=self.driver, locator=self.locators.SEARCH_ICON_TAP_BAR
+        )
 
     @property
     def close_trial_button(self):
@@ -47,5 +49,7 @@ class Home(BaseView):
                 self.close_trial_button.click()
                 return None
             except TimeoutException:
-                print(f"\nERROR: cannot find the element using a locator {self.locator}. ")
+                print(
+                    f"\nERROR: cannot find the element using a locator {self.locator}. "
+                )
                 return None

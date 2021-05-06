@@ -17,11 +17,17 @@ class HomeLocators:
         }[self.config.platform_name]
 
         self.SEARCH_ICON_TAP_BAR = {
-            "android": (By.XPATH, "//android.widget.FrameLayout[@content-desc='Search']"),
+            "android": (
+                By.XPATH,
+                "//android.widget.FrameLayout[@content-desc='Search']",
+            ),
             "ios": (By.XPATH, "//XCUIElementTypeButton[@name='Search']"),
         }[self.config.platform_name]
 
         self.CLOSE_TRIAL_BUTTON = {
-            "android": (By.XPATH, "//android.widget.TextView[@text='Try ClassPass']/../*[1]"),
+            "android": (
+                By.XPATH,
+                "//android.widget.TextView[@text='Try ClassPass']/../*[1]",
+            ),
             "ios": (MobileBy.ACCESSIBILITY_ID, "cross"),
         }[self.config.platform_name]

@@ -21,6 +21,6 @@ class Navigation(BaseView):
         width = window_size["width"] / 2
         height = window_size["height"] / 2
         actions = TouchAction(self.driver)
-        actions.press(x=width, y=height).wait(1000).move_to(x=0, y=height).release().perform()
-
-
+        actions.press(x=width, y=height).wait(1000).move_to(
+            x=0, y=height
+        ).release().perform()

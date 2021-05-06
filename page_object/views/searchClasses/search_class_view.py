@@ -19,7 +19,9 @@ class SearchClass(BaseView):
 
     @property
     def view_by_the_time_button(self):
-        return BaseElement(driver=self.driver, locator=self.locators.VIEW_BY_THE_TIME_BUTTON)
+        return BaseElement(
+            driver=self.driver, locator=self.locators.VIEW_BY_THE_TIME_BUTTON
+        )
 
     @property
     def time_button(self):
@@ -51,7 +53,9 @@ class SearchClass(BaseView):
 
     @property
     def cancel_permissions_button(self):
-        return BaseElement(driver=self.driver, locator=self.locators.CANCEL_PERMISSIONS_BUTTON)
+        return BaseElement(
+            driver=self.driver, locator=self.locators.CANCEL_PERMISSIONS_BUTTON
+        )
 
     def cancel_permissions(self):
         self.cancel_permissions_button.click()
@@ -91,11 +95,14 @@ class SearchClass(BaseView):
 
     def select_activity_from_results(self, activity, config):
         ACTIVITY_LOCATOR = {
-            "android": (By.XPATH, "//android.widget.TextView[@text='" + activity + "']"),
+            "android": (
+                By.XPATH,
+                "//android.widget.TextView[@text='" + activity + "']",
+            ),
             "ios": (By.XPATH, "(//XCUIElementTypeOther[@name='" + activity + "'])[4]"),
         }[self.config.platform_name]
         self.try_click(ACTIVITY_LOCATOR)
-        if config.platform_name == 'android':
+        if config.platform_name == "android":
             self.cancel_permissions()
 
     def keyword_search_click(self):

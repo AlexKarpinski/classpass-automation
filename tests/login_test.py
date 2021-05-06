@@ -8,7 +8,6 @@ from data.constants import Constants
 
 
 class TestLoginView:
-
     @pytest.fixture(scope="class")
     def login_view(self, driver, config, env_config):
         # Log in
@@ -26,19 +25,23 @@ class TestLoginView:
         with allure.step("WHEN User opens previous screen"):
             login.open_previous_screen()
 
-    @allure.title("Verify that user can't login to the app with non-existing email, TC_LOGIN_002")
+    @allure.title(
+        "Verify that user can't login to the app with non-existing email, TC_LOGIN_002"
+    )
     def test_login_negative(self, login_view, open_previous_screen):
         login_view.login_into_app(Constants.USER_NAME, Constants.INVALID_PASSWORD)
         message_text = login_view.unsuccessful_login_message.text
         with allure.step("THEN Message should appeared"):
             assert message_text == Constants.UNSUCCESSFUL_LOGIN_MESSAGE_TEXT
 
-    @allure.title("Verify that user can log in to the app with valid email and password, TC_LOGIN_001")
+    @allure.title(
+        "Verify that user can log in to the app with valid email and password, TC_LOGIN_001"
+    )
     def test_login_positive(self, driver, config, login_view):
         login_view.login_into_app(Constants.USER_NAME, Constants.USER_PASSWORD)
-        if config.platform_name == 'android' and config.platform_version == '7.0':
+        if config.platform_name == "android" and config.platform_version == "7.0":
             login_view.deny_permissions()
-        elif config.platform_name == 'android' and config.platform_version == '10':
+        elif config.platform_name == "android" and config.platform_version == "10":
             login_view.deny_permissions_android_10()
         assert login_view.login_label_invisibility()
         home = Home(driver=driver, config=config)

@@ -35,7 +35,9 @@ class Login(BaseView):
 
     @property
     def unsuccessful_login_message(self):
-        return BaseElement(driver=self.driver, locator=self.locators.UNSUCCESSFUL_LOGIN_MESSAGE)
+        return BaseElement(
+            driver=self.driver, locator=self.locators.UNSUCCESSFUL_LOGIN_MESSAGE
+        )
 
     @property
     def back_button(self):
@@ -51,7 +53,9 @@ class Login(BaseView):
 
     @property
     def deny_button_android_10(self):
-        return BaseElement(driver=self.driver, locator=self.locators.DENY_BUTTON_ANDROID_10)
+        return BaseElement(
+            driver=self.driver, locator=self.locators.DENY_BUTTON_ANDROID_10
+        )
 
     def deny_permissions_android_10(self):
         with allure.step("AND User clicks on deny button"):
@@ -67,5 +71,5 @@ class Login(BaseView):
             self.email_field.input(email)
         with allure.step(f"AND User inputs {password} as password"):
             self.password_field.input(password)
-        with allure.step('AND User clicks on the login button'):
+        with allure.step("AND User clicks on the login button"):
             self.log_in_button.click()

@@ -29,10 +29,10 @@ class Profile(BaseView):
         return BaseElement(driver=self.driver, locator=self.locators.SUPPORT_LABEL)
 
     def log_out(self):
-        with allure.step('WHEN User clicks on the profile button'):
+        with allure.step("WHEN User clicks on the profile button"):
             self.profile_icon.click()
-        with allure.step('AND User clicks on the settings button'):
+        with allure.step("AND User clicks on the settings button"):
             self.settings_button.click()
         # self.scroll_up_from(self.support_label)
-        with allure.step('AND User clicks on the logout button'):
+        with allure.step("AND User clicks on the logout button"):
             self.log_out_button.click()

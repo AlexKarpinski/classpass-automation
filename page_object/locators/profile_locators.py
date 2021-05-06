@@ -7,12 +7,18 @@ class ProfileLocators:
         self.config = config
 
         self.SETTINGS_BUTTON = {
-            "android": (By.XPATH, "//android.widget.TextView[contains(@text, 'Settings')]/.."),
+            "android": (
+                By.XPATH,
+                "//android.widget.TextView[contains(@text, 'Settings')]/..",
+            ),
             "ios": (By.XPATH, "//XCUIElementTypeButton[@name='Settings']"),
         }[self.config.platform_name]
 
         self.LOG_OUT_BUTTON = {
-            "android": (By.XPATH, "//android.widget.TextView[contains(@text, 'Log out')]/.."),
+            "android": (
+                By.XPATH,
+                "//android.widget.TextView[contains(@text, 'Log out')]/..",
+            ),
             "ios": (By.XPATH, "//XCUIElementTypeOther[@name='Log out']"),
         }[self.config.platform_name]
 
