@@ -32,11 +32,11 @@ pytest -m active_route --device-name MAC_MINI_LOCAL_SAMSUNG_S6
 ```
 Execute all tests using MAC_MINI_LOCAL_IPHONE_XR from desired capabilities
 ```
-pytest -m active_route --device-name REMOTE_GALAXY_S_9
+pytest -m active_route --device-name MAC_MINI_LOCAL_IPHONE_XR
 ```
 Execute all tests using KOBITON_SAMSUNG_S6 in the Kobiton from desired capabilities
 ```
-pytest -m active_route --device-name REMOTE_GALAXY_S_9
+pytest -m active_route --device-name KOBITON_SAMSUNG_S6
 ```
 ## Allure report:
 After tests execution is completed, results are loaded into allure-results folder.
