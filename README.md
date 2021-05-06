@@ -1,4 +1,4 @@
-###Classpass Python Framework 
+### Classpass Python Framework 
 -----
 ## In order to start to work with the project, download it using command:
 ```
@@ -10,7 +10,7 @@ git clone git@github.com:AlexKarpinski/classpass-automation.git
 pipenv install
 ```
 
-##Run Instructions 
+## Run Instructions 
 ----- 
 The python framework can be ran directly from the command line using pytest. The framework fetches the latest build from Kobiton to test against if you do not provide a build in the call. 
 
@@ -24,7 +24,7 @@ Custom options:
   --device-name is required. 
   --env is optional. By default uses 'prod' env.  
 ```
-##Examples 
+## Examples 
 
 Execute all tests on MAC_MINI_LOCAL_SAMSUNG_S6 desired capabilities locally
 ```
