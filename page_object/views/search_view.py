@@ -73,31 +73,6 @@ class Search(BaseView):
         with allure.step("WHEN User scrolls to top"):
             self.scroll_down_from(self.wellness_image)
 
-    def fitness_image_visibility(self):
-        locators = SearchLocators(config=self.config)
-        with allure.step("THEN fitness image should be visible"):
-            return self.wait_for(locators.FITNESS_IMAGE)
-
-    def online_image_visibility(self):
-        locators = SearchLocators(config=self.config)
-        with allure.step("AND online image should be visible"):
-            return self.wait_for(locators.ONLINE_IMAGE)
-
-    def wellness_image_visibility(self):
-        locators = SearchLocators(config=self.config)
-        with allure.step("THEN wellness image should be visible"):
-            return self.wait_for(locators.WELLNESS_IMAGE)
-
-    def beauty_image_visibility(self):
-        locators = SearchLocators(config=self.config)
-        with allure.step("AND beauty image should be visible"):
-            return self.wait_for(locators.BEAUTY_IMAGE)
-
-    def sports_and_recreation_image_visibility(self):
-        locators = SearchLocators(config=self.config)
-        with allure.step("AND sports and recreation image should be visible"):
-            return self.wait_for(locators.SPORTS_AND_RECREATION_IMAGE)
-
     def image_visibility_by_name(self, name, config):
         if name == "Wellness" or name == "Beauty" or name == "Sports and Recreation":
             self.scroll_to_bottom(config)
@@ -111,16 +86,13 @@ class Search(BaseView):
         return self.wait_for(IMAGE)
 
     def fitness_image_invisibility(self):
-        locators = SearchLocators(config=self.config)
-        return self.wait_for_invisibility(locators.FITNESS_IMAGE)
+        return self.wait_for_invisibility(self.locators.FITNESS_IMAGE)
 
     def online_image_invisibility(self):
-        locators = SearchLocators(config=self.config)
-        return self.wait_for_invisibility(locators.ONLINE_IMAGE)
+        return self.wait_for_invisibility(self.locators.ONLINE_IMAGE)
 
     def sports_and_recreation_image_invisibility(self):
-        locators = SearchLocators(config=self.config)
-        return self.wait_for_invisibility(locators.SPORTS_AND_RECREATION_IMAGE)
+        return self.wait_for_invisibility(self.locators.SPORTS_AND_RECREATION_IMAGE)
 
     def open_fitness(self):
         self.fitness_image.click()

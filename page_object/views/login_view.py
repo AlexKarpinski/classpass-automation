@@ -12,11 +12,6 @@ class Login(BaseView):
         self.config = config
         self.locators = LoginLocators(config=self.config)
 
-    def login_label_invisibility(self):
-        locators = LoginLocators(config=self.config)
-        with allure.step("THEN Login label should be invisible"):
-            return self.wait_for_invisibility(locators.LOGIN_LABEL)
-
     @property
     def login_button(self):
         return BaseElement(driver=self.driver, locator=self.locators.LOGIN_BUTTON)
@@ -46,6 +41,10 @@ class Login(BaseView):
     @property
     def deny_button(self):
         return BaseElement(driver=self.driver, locator=self.locators.DENY_BUTTON)
+
+    def login_label_invisibility(self):
+        with allure.step("THEN Login label should be invisible"):
+            return self.wait_for_invisibility(self.locators.LOGIN_LABEL)
 
     def deny_permissions(self):
         with allure.step("AND User clicks on deny button"):

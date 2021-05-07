@@ -1,5 +1,6 @@
 import allure
 import pytest
+from pytest import mark
 
 from page_object.views.login_view import Login
 from page_object.views.profile_view import Profile
@@ -32,11 +33,17 @@ class TestSearchViewImages:
         profile = Profile(driver=driver, config=config)
         profile.log_out()
 
+    @mark.smoke
     @allure.title("Verify that user is able to open search screen, TC_SEARCH_001")
     def test_open_search_view(self, search_view, config):
-        assert search_view.fitness_image_visibility()
-        assert search_view.online_image_visibility()
+        with allure.step("THEN fitness image should be visible"):
+            assert search_view.fitness_image.visible
+        with allure.step("AND online image should be visible"):
+            assert search_view.online_image.visible
         search_view.scroll_to_bottom(config)
-        assert search_view.wellness_image_visibility()
-        assert search_view.beauty_image_visibility()
-        assert search_view.sports_and_recreation_image_visibility()
+        with allure.step("AND wellness image should be visible"):
+            assert search_view.wellness_image.visible
+        with allure.step("AND beauty image should be visible"):
+            assert search_view.beauty_image.visible
+        with allure.step("AND sports and recreation image should be visible"):
+            assert search_view.sports_and_recreation_image.visible

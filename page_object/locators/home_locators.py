@@ -29,5 +29,5 @@ class HomeLocators:
                 By.XPATH,
                 "//android.widget.TextView[@text='Try ClassPass']/../*[1]",
             ),
-            "ios": (MobileBy.ACCESSIBILITY_ID, "cross"),
+            "ios": (MobileBy.IOS_PREDICATE, "name == 'cross'"),
         }[self.config.platform_name]

@@ -18,8 +18,8 @@ activities = data["activities"]
 
 
 class TestSearchSourcesView:
-    @pytest.fixture(scope="function")
-    def search_view(self, driver, config):
+    @pytest.fixture(scope="class")
+    def login(self, driver, config):
         # Log in
         login = Login(driver=driver, config=config)
         login.login_into_app(Constants.USER_NAME, Constants.USER_PASSWORD)
@@ -27,6 +27,16 @@ class TestSearchSourcesView:
             login.deny_permissions()
         elif config.platform_name == "android" and config.platform_version == "10":
             login.deny_permissions_android_10()
+        home = Home(driver=driver, config=config)
+        home.close_trial_button_click()
+
+        yield
+
+        profile = Profile(driver=driver, config=config)
+        profile.log_out()
+
+    @pytest.fixture(scope="function")
+    def search_view(self, driver, config):
         home = Home(driver=driver, config=config)
         home.open_search_screen()
 
@@ -42,7 +52,7 @@ class TestSearchSourcesView:
     @allure.title(
         "Keyword Search - Verify that user is able to apply new activity on result screen, TC_SEARCH_004"
     )
-    def test_search_activity(self, search_view, driver, config, activity):
+    def test_search_activity(self, login, search_view, driver, config, activity):
         search_view.keyword_search_click()
         search_view.keyword_search_field_type(activity)
         search_view.select_activity_from_results(activity, config)
@@ -50,30 +60,23 @@ class TestSearchSourcesView:
         with allure.step(f"THEN Search bar should have text {activity}"):
             assert search_class_view.search_bar.has_text(activity)
         with allure.step(
-            f"AND Source {data[activity]['name' + config.platform_name]} should be visible"
+                f"AND Source {data[activity]['name' + config.platform_name]} should be visible"
         ):
             assert search_class_view.source_by_name_visibility(
                 data[activity]["name" + config.platform_name]
             )
 
-    @pytest.fixture(scope="class")
-    def logout(self, driver, config):
-        yield
-
-        profile = Profile(driver=driver, config=config)
-        profile.log_out()
-
     @pytest.mark.parametrize("sources_type", sources.values())
     @allure.title(
         "Verify that user is able to open category from search screen, TC_SEARCH_002"
     )
-    def test_open_categories(self, search_view, config, driver, sources_type, logout):
+    def test_open_categories(self, search_view, config, driver, sources_type):
         search_view.open_category_by_name(sources_type, config)
         search_class_view = SearchClass(driver=driver, config=config)
         with allure.step(f"THEN Search bar should have text {sources_type}"):
             assert search_class_view.search_bar.has_text(sources_type)
         with allure.step(
-            f"AND Source {data[sources_type]['name' + config.platform_name]} should be visible"
+                f"AND Source {data[sources_type]['name' + config.platform_name]} should be visible"
         ):
             assert search_class_view.source_by_name_visibility(
                 data[sources_type]["name" + config.platform_name]

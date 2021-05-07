@@ -1,6 +1,7 @@
 import allure
 import pytest
 
+from pytest import mark
 from page_object.views.home_view import Home
 from page_object.views.login_view import Login
 from page_object.views.profile_view import Profile
@@ -25,6 +26,7 @@ class TestLoginView:
         with allure.step("WHEN User opens previous screen"):
             login.open_previous_screen()
 
+    @mark.smoke
     @allure.title(
         "Verify that user can't login to the app with non-existing email, TC_LOGIN_002"
     )
@@ -34,6 +36,7 @@ class TestLoginView:
         with allure.step("THEN Message should appeared"):
             assert message_text == Constants.UNSUCCESSFUL_LOGIN_MESSAGE_TEXT
 
+    @mark.smoke
     @allure.title(
         "Verify that user can log in to the app with valid email and password, TC_LOGIN_001"
     )
@@ -47,4 +50,4 @@ class TestLoginView:
         home = Home(driver=driver, config=config)
         home.close_trial_button_click()
         with allure.step(f"THEN for you label should be visible"):
-            assert home.welcome_label_image_visibility()
+            assert home.welcome_label.visible

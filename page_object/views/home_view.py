@@ -45,11 +45,4 @@ class Home(BaseView):
 
     def close_trial_button_click(self):
         with allure.step("WHEN User closes trial view"):
-            try:
-                self.close_trial_button.click()
-                return None
-            except TimeoutException:
-                print(
-                    f"\nERROR: cannot find the element using a locator {self.locator}. "
-                )
-                return None
+            self.close_trial_button.click()

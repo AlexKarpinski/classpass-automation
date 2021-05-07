@@ -33,6 +33,5 @@ class Profile(BaseView):
             self.profile_icon.click()
         with allure.step("AND User clicks on the settings button"):
             self.settings_button.click()
-        # self.scroll_up_from(self.support_label)
         with allure.step("AND User clicks on the logout button"):
             self.log_out_button.click()
