@@ -15,6 +15,7 @@ class TestSearchViewImages:
         # Log in
         login = Login(driver=driver, config=config)
         login.login_into_app(Constants.USER_NAME, Constants.USER_PASSWORD)
+
         if config.platform_name == "android" and config.platform_version == "7.0":
             login.deny_permissions()
         elif config.platform_name == "android" and config.platform_version == "10":
