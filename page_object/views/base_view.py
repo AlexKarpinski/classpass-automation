@@ -12,17 +12,6 @@ class BaseView(object):
         self.driver = driver
         self.config = config
 
-    def wait_for(self, locator, wait_time=20):
-
-        try:
-            return WebDriverWait(self.driver, wait_time).until(
-                EC.visibility_of_element_located(locator)
-            )
-
-        except TimeoutException:
-            print("Error: cannot find the element: ", sys.exc_info()[0])
-            return None
-
     def try_click(self, locator, wait_time=10):
         try:
             WebDriverWait(self.driver, wait_time).until(
@@ -38,17 +27,6 @@ class BaseView(object):
         try:
             return WebDriverWait(self.driver, wait_time).until(
                 EC.invisibility_of_element_located(locator)
-            )
-
-        except TimeoutException:
-            print("Error: element is visible: ", sys.exc_info()[0])
-            return None
-
-    def wait_for_clickability(self, locator, wait_time=15):
-        # print("Explicitly waiting for element to be invisible '{0}' for '{1}' seconds ".format(locator, wait_time))
-        try:
-            return WebDriverWait(self.driver, wait_time).until(
-                EC.element_to_be_clickable(locator)
             )
 
         except TimeoutException:
@@ -111,3 +89,25 @@ class BaseView(object):
                 destination_el
             ).release().perform()
         return self
+
+    def wait_for(self, locator, wait_time=20):
+
+        try:
+            return WebDriverWait(self.driver, wait_time).until(
+                EC.visibility_of_element_located(locator)
+            )
+
+        except TimeoutException:
+            print("Error: cannot find the element: ", sys.exc_info()[0])
+            return None
+
+    def wait_for_clickability(self, locator, wait_time=15):
+        # print("Explicitly waiting for element to be invisible '{0}' for '{1}' seconds ".format(locator, wait_time))
+        try:
+            return WebDriverWait(self.driver, wait_time).until(
+                EC.element_to_be_clickable(locator)
+            )
+
+        except TimeoutException:
+            print("Error: element is visible: ", sys.exc_info()[0])
+            return None
