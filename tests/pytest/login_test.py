@@ -46,7 +46,6 @@ class TestLoginView:
             login_view.deny_permissions()
         elif config.platform_name == "android" and config.platform_version == "10":
             login_view.deny_permissions_android_10()
-        assert login_view.login_label_invisibility()
         home = Home(driver=driver, config=config)
         home.close_trial_button_click()
         with allure.step(f"THEN for you label should be visible"):

@@ -6,7 +6,7 @@ from page_object.views.login_view import Login
 from page_object.views.profile_view import Profile
 from data.constants import Constants
 from page_object.views.home_view import Home
-from page_object.views.searchClasses.search_class_view import SearchClass
+from page_object.views.search_class_view import SearchClass
 from page_object.views.search_view import Search
 
 f = open(
@@ -50,7 +50,7 @@ class TestSearchSourcesView:
 
     @pytest.mark.parametrize("activity", activities.values())
     @allure.title(
-        "Keyword Search - Verify that user is able to apply new activity on result screen, TC_SEARCH_004"
+        "Keyword Search - Verify that user is able to apply new activity on result screen, TC_SEARCH_003"
     )
     def test_search_activity(self, login, search_view, driver, config, activity):
         search_view.keyword_search_click()
