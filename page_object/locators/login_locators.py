@@ -39,8 +39,8 @@ class LoginLocators:
                 "//android.widget.EditText[contains(@text, 'Password')]",
             ),
             "ios": (
-                By.XPATH,
-                "(//XCUIElementTypeOther[@name='Password'])[2]/XCUIElementTypeSecureTextField",
+                MobileBy.IOS_CLASS_CHAIN,
+                '**/XCUIElementTypeSecureTextField[`value == "Password"`]',
             ),
         }[self.config.platform_name]
 

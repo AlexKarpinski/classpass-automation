@@ -69,6 +69,6 @@ class Login(BaseView):
         with allure.step(f"AND User inputs {email} as email"):
             self.email_field.input(email)
         with allure.step(f"AND User inputs {password} as password"):
-            self.password_field.input(password)
+            self.password_field.type(password)
         with allure.step("AND User clicks on the login button"):
             self.log_in_button.click()

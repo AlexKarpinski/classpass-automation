@@ -63,7 +63,7 @@ class Search(BaseView):
         with allure.step("WHEN User scrolls to bottom"):
             if config.platform_name == "android":
                 actions = TouchAction(self.driver)
-                actions.press(x=500, y=1850).wait(1000).move_to(
+                actions.press(x=500, y=1900).wait(1000).move_to(
                     x=500, y=0
                 ).release().perform()
             elif config.platform_name == "ios":
