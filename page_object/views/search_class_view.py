@@ -1,7 +1,7 @@
 import allure
 
 from selenium.webdriver.common.by import By
-from page_object.locators.searchClass.search_class_locators import SearchClassLocators
+from page_object.locators.search_class_locators import SearchClassLocators
 from page_object.views.base_view import BaseView
 from page_object.base_element import BaseElement
 

@@ -31,10 +31,6 @@ class Home(BaseView):
     def home_icon_tap_bar(self):
         return BaseElement(driver=self.driver, locator=self.locators.HOME_ICON_TAP_BAR)
 
-    def welcome_label_image_visibility(self):
-        locators = HomeLocators(config=self.config)
-        return self.wait_for(locators.WELCOME_LABEL)
-
     def open_search_screen(self):
         with allure.step("WHEN User opens search screen"):
             self.search_icon_tap_bar.click()
