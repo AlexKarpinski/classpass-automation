@@ -1,6 +1,6 @@
 import os
 
-from page_object.desired_capabilities import DesiredCapabilities
+from desired_capabilities import DesiredCapabilities
 
 
 class Config(object):

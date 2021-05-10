@@ -5,7 +5,7 @@ import time
 from appium import webdriver
 import allure
 
-from page_object.config import EnvConfig, DeviceConfig, TestConfig, Config
+from config import EnvConfig, DeviceConfig, TestConfig, Config
 
 
 def pytest_addoption(parser):
