@@ -1,6 +1,5 @@
 import allure
 
-from selenium.common.exceptions import TimeoutException
 from page_object.locators.home_locators import HomeLocators
 from page_object.views.base_view import BaseView
 from page_object.base_element import BaseElement
