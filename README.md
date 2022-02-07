@@ -54,3 +54,7 @@ Mac/linyx:
 ```
 rm -rf allure_results
 ```
+Execute all tests on MAC_MINI_LOCAL_SAMSUNG_S6 desired capabilities locally with allure report:
+```
+pytest --device-name MAC_MINI_LOCAL_SAMSUNG_S6 --alluredir ./allure_results/androidS6
+```
