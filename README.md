@@ -42,15 +42,15 @@ pytest --device-name KOBITON_SAMSUNG_S6
 After tests execution is completed, results are loaded into allure-results folder.
 To open allure report use the following command:
 ```
-allure serve allure-results/"path"
+allure serve allure_results/"path"
 ```
 Note: Before running tests it makes sense to delete allure-results folder if it is not empty:
 
 Windows:
 ```
-rmdir allure-results
+rmdir allure_results
 ```
 Mac/linyx:
 ```
-rm -rf allure-results
+rm -rf allure_results
 ```
